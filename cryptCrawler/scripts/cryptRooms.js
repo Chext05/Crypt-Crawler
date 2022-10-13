@@ -1,0 +1,1 @@
+//this page can be used to make arrays of all the rooms in the crypt.

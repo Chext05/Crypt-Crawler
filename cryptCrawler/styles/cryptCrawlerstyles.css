@@ -1,0 +1,25 @@
+body {
+    background-color: black;
+    color: crimson;
+}
+
+#charStats {
+    display: block;
+    float: left;
+    width: 25%;
+}
+
+
+
+#charEquip {
+    display: block;
+    float: left;
+    width: 25%
+}
+
+#selectStats {
+    display: block;
+    float: left;
+    width: 25%;
+}
+
