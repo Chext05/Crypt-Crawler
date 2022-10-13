@@ -35,7 +35,7 @@ let armorResistanceValue = 0;
 let weaponBonusPhysicalDamage = 0;
 let weaponBonusMagicalDamage = 0;
 let weaponResolveTime = 0;
-let weaponPhysicalDamageDie = 1;
+let weaponAttackDamage = 0;
 let weaponMagicalDamageDie = 0;
 let weaponBulkValue = 0;
 let weaponCostValue = 0;
@@ -54,7 +54,7 @@ const masterArmorTable = [
 
 const masterWeaponTable = [
     {bonusphysicaldamage: 0, bonusmagicaldamage: 0, resolvetime: 6, physicaldamagedie: 1, magicaldamagedie: 0, bulk: 0, price: 0, bonustoattack: 0, hands: 2, weaponname: "Fists"},
-    {bonusphysicaldamage: 0, bonusmagicaldamage: 0, resolvetime: 7, physicaldamagedie: 2, magicaldamagedie: 0, bulk: 1, price: 2, bonustoattack: 1, hands: 1, weaponname: "Arming Sword"},
+    {bonusphysicaldamage: 0, bonusmagicaldamage: 0, resolvetime: 7, physicaldamagedie: 1, magicaldamagedie: 0, bulk: 1, price: 2, bonustoattack: 1, hands: 1, weaponname: "Arming Sword"},
     {bonusphysicaldamage: 1, bonusmagicaldamage: 0, resolvetime: 8, physicaldamagedie: 1, magicaldamagedie: 0, bulk: 1, price: 3, bonustoattack: 0, hands: 1, weaponname: "Mace"},
     {bonusphysicaldamage: 0, bonusmagicaldamage: 0, resolvetime: 9, physicaldamagedie: 2, magicaldamagedie: 0, bulk: 2, price: 0, bonustoattack: 0, hands: 2, weaponname: "BattleAxe"},
     {bonusphysicaldamage: 0, bonusmagicaldamage: 0, resolvetime: 8, physicaldamagedie: 0, magicaldamagedie: 1, bulk: 1, price: 0, bonustoattack: 0, hands: 2, weaponname: "Staff"},
@@ -83,7 +83,9 @@ document.getElementById("dynamicCharBulkValue").innerHTML = charStartBulkValue;
 document.getElementById("totalCharBulkValue").innerHTML = charMaxBulkValue;
 
 //ATTACK, DEFENSE, AND MOVEMENT
-document.getElementById("charAttack").innerHTML = charInsight;
+document.getElementById("charAttackDamage").innerHTML = weaponAttackDamage;
+document.getElementById("charAttackBonus").innerHTML = charInsight + weaponBonusAttackValue;
+document.getElementById("charDamageBonus").innerHTML = weaponBonusPhysicalDamage;
 document.getElementById("charDefense").innerHTML = charAgility + armorDefenseValue;
 document.getElementById("charMovement").innerHTML = startMovement + charThievery;
 
@@ -157,13 +159,13 @@ function increaseInsight() {
     //this function is used to add points to a characters agility score, and increase their defense score.
     document.getElementById("increaseInsight").value = ++charInsight;
     document.getElementById("increaseInsight").innerHTML = charInsight;
-    document.getElementById("charAttack").innerHTML = charInsight/* add defense scores from other items here later*/;
+    document.getElementById("charAttackBonus").innerHTML = charInsight/* add defense scores from other items here later*/;
     skillScorecaptracker();
 } 
 function reduceInsight() {
     document.getElementById("increaseInsight").value = --charInsight;
     document.getElementById("increaseInsight").innerHTML = charInsight;
-    document.getElementById("charAttack").innerHTML = charInsight/* add defense scores from other items here later*/;
+    document.getElementById("charAttackBonus").innerHTML = charInsight/* add defense scores from other items here later*/;
     skillScorecaptracker();
 } 
 //THIS FUNCTION ENSURES PLAYERS CAN SPEND A SET LIMIT TO UPGRADE SKILL SCORES. IT IS CALLED EVERYTIME A SKILL SCORE IS CHANGED.
@@ -276,7 +278,7 @@ function equipFists() {
     weaponBonusPhysicalDamage = equippedWeapon[0];
     weaponBonusMagicalDamage = equippedWeapon[1];
     weaponResolveTime = equippedWeapon[2];
-    weaponDamagePhysicalDie = equippedWeapon[3];
+    weaponAttackDamage = equippedWeapon[3];
     weaponMagicalDamageDie = equippedWeapon[4];
     weaponBulkValue = equippedWeapon[5];
     weaponCostValue = equippedWeapon[6];
@@ -289,29 +291,65 @@ function equipArmingSword() {
     weaponBonusPhysicalDamage = equippedWeapon[0];
     weaponBonusMagicalDamage = equippedWeapon[1];
     weaponResolveTime = equippedWeapon[2];
-    weaponDamagePhysicalDie = equippedWeapon[3];
+    weaponAttackDamage = equippedWeapon[3];
     weaponMagicalDamageDie = equippedWeapon[4];
     weaponBulkValue = equippedWeapon[5];
     weaponCostValue = equippedWeapon[6];
     weaponBonusAttackValue = equippedWeapon[7];
-    
-    document.getElementById("charPhysicalDamageDie").innerHTML = weaponDamagePhysicalDie;
+    updateCharValues();
+}
+
+function equipMace() {
+    let equippedWeapon = Object.values(masterWeaponTable[2]);
+    weaponBonusPhysicalDamage = equippedWeapon[0];
+    weaponBonusMagicalDamage = equippedWeapon[1];
+    weaponResolveTime = equippedWeapon[2];
+    weaponAttackDamage = equippedWeapon[3];
+    weaponMagicalDamageDie = equippedWeapon[4];
+    weaponBulkValue = equippedWeapon[5];
+    weaponCostValue = equippedWeapon[6];
+    weaponBonusAttackValue = equippedWeapon[7];
+    updateCharValues();
+}
+
+function equipBattleAxe() {
+    let equippedWeapon = Object.values(masterWeaponTable[3]);
+    weaponBonusPhysicalDamage = equippedWeapon[0];
+    weaponBonusMagicalDamage = equippedWeapon[1];
+    weaponResolveTime = equippedWeapon[2];
+    weaponAttackDamage = equippedWeapon[3];
+    weaponMagicalDamageDie = equippedWeapon[4];
+    weaponBulkValue = equippedWeapon[5];
+    weaponCostValue = equippedWeapon[6];
+    weaponBonusAttackValue = equippedWeapon[7];
+    updateCharValues();
+}
+
+function equipStaff() {
+    let equippedWeapon = Object.values(masterWeaponTable[4]);
+    weaponBonusPhysicalDamage = equippedWeapon[0];
+    weaponBonusMagicalDamage = equippedWeapon[1];
+    weaponResolveTime = equippedWeapon[2];
+    weaponAttackDamage = equippedWeapon[3];
+    weaponMagicalDamageDie = equippedWeapon[4];
+    weaponBulkValue = equippedWeapon[5];
+    weaponCostValue = equippedWeapon[6];
+    weaponBonusAttackValue = equippedWeapon[7];
+    updateCharValues();
 }
 
 //UPDATE CHARACTER STATS FROM EQUIPMENT FUNCTION
 function updateCharValues() {
     document.getElementById("charDefense").innerHTML = charAgility+armorDefenseValue;
     document.getElementById("charArmorScore").innerHTML = armorArmorValue;
-    document.getElementById("totalCharGoldValue").innerHTML = charStartGold-armorCostValue;
-    document.getElementById("dynamicCharBulkValue").innerHTML = charStartBulkValue + armorBulkValue;
+    document.getElementById("totalCharGoldValue").innerHTML = charStartGold-armorCostValue-weaponCostValue;
+    document.getElementById("dynamicCharBulkValue").innerHTML = charStartBulkValue + armorBulkValue+ weaponBulkValue;
     document.getElementById("totalCharBulkValue").innerHTML = charMaxBulkValue + armorBulkBonus;
     document.getElementById("charResistanceScore").innerHTML = armorResistanceValue;
-
-    // document.getElementById("charWeaponBonusPhysicalDamage").innerHTML = weaponBonusPhysicalDamage;
-    // // document.getElementById("charWeaponBonusMagicalDamage").innerHTML = weaponBonusMagicalDamage;
-    // document.getElementById("charAttackResolveTime").innerHTML = weaponResolveTime;
-    // document.getElementById("charPhysicalDamageDie").innerHTML = weaponDamagePhysicalDie;
-    // document.getElementById("charMagicalDamageDie").innerHTML = weaponMagicalDamageDie;
+    document.getElementById("charAttackBonus").innerHTML = charInsight + weaponBonusAttackValue;
+    document.getElementById("charDamageBonus").innerHTML = weaponBonusPhysicalDamage;
+    document.getElementById("charAttackDamage").innerHTML = weaponAttackDamage;
+    document.getElementById("charAttackResolveTime").innerHTML = weaponResolveTime;
 }
 
 //PHYSICAL DAMAGE ROLL FUNCTION
@@ -321,7 +359,7 @@ function rollPhysicalDamageAttack() {
     const damageRolls = [];
     let totalPhysicalDamage = 0;
     //this for loop produces a die roll from 1 to 3 a number of times equal to the physical damage die value, and places those rolls into the damageRolls array.
-    for (let i = 0, damagedie = weaponPhysicalDamageDie; i < damagedie; i++) { 
+    for (let i = 0, damagedie = weaponAttackDamage; i < damagedie; i++) { 
         damageRolls.push(Math.floor(Math.random() * (3 - 1 + 1) + 1));
     }
     //This for loop adds together all rolls in the damageRolls array into one value.
