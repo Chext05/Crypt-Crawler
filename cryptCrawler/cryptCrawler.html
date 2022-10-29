@@ -7,123 +7,170 @@
 </head>
 
 <body>
-<h1>CRYPT CRAWLER<h1>
+<!-- <h1>CRYPT CRAWLER<h1>
 <h2>The Wind always howls on the high moor. Rain wets the cold gray stones while lightning flashes across the sky. The mausoleum door screams open on rusty hinges. The howling is endless on the high moor...</h2>
 
 <button type="button" onclick="createChar()">
     <b>Who are You?</b>
-</button>
+</button> -->
 
-<div>
 <div id="charStats">
     <h3>Character Stats</h3>
     <p>Your Name is <span id="charName"></span></p>
-    <p>Your total Gold is <span id="totalCharGoldValue"></span></p>
-    <p>Your Health is <span id="dynamicCharhealth"></span> / <span id="totalCharhealth"></span></p>
-    <p>Your Mana is <span id="dynamicCharMana"></span> / <span id="totalCharMana"></span></p>
-    <p>Your Bulk Score <span id="dynamicCharBulkValue"></span> / <span id="totalCharBulkValue"></span></p>
-    <P>Your Defense Score is <span id="charDefense"></span></P>
-    <p>Your Armor Score is <span id="charArmorScore"></span></p>
-    <p>Your Resistance Score is <span id="charResistanceScore"></span></p>
-    <p>Your Movement is <span id="charMovement"></span></p>
-    <p>Your Attack Score is <span id="charAttack"></span></p>
-    <p>You Deal <span id="charPhysicalDamageDie"></span> Attack Die + <span id="charWeaponBonusPhysicalDamage"></span></p>
-    <p>Your Light Score is <span></span></p>
-    
-    <p>Your Resolve time is <span id="charAttackResolveTime"></span></p>
-</div>
-
+        <div class="charSkillScoreDisplay"> <!--DISPLAYS CHARACTER SKILL SCORES-->
+        <div class="skillScore">
+            <p>Athletics</p>
+            <p>
+                <button type="button" class="skillScoreButton" id="reduceAthleticsButton" onclick="reduceSkillScore(Athletics)"><b>-</b></button>
+                <span class="skillScoreNumber" id="athleticsSkill"></span>
+                <button type="button" class="skillScoreButton" id="increaseAthleticsButton" onclick="increaseSkillScore(Athletics)"><b>+</b></button>
+            </p>
+        </div>    
+        <div class="skillScore">
+            <p>Agility</p>
+            <p>
+                <button type="button" class="skillScoreButton" id="reduceAgilityButton" onclick="reduceSkillScore(Agility)"><b>-</b></button>
+                <span class="skillScoreNumber" id="agilitySkill"></span>
+                <button type="button" class="skillScoreButton" id="increaseAgilityButton" onclick="increaseSkillScore(Agility)"><b>+</b></button>
+            </p>
+        </div>    
+        <div class="skillScore">
+            <p>Thievery</p>
+            <p>
+                <button type="button" class="skillScoreButton" id="reduceThieveryButton" onclick="reduceSkillScore(Thievery)"><b>-</b></button>
+                <span class="skillScoreNumber" id="thieverySkill"></span>
+                <button type="button" class="skillScoreButton" id="increaseThieveryButton" onclick="increaseSkillScore(Thievery)"><b>+</b></button>
+            </p>
+        </div> 
+        <div class="skillScore">
+            <p>Knowledge</p>
+            <p>
+                <button type="button" class="skillScoreButton" id="reduceKnowledgeButton" onclick="reduceSkillScore(Knowledge)"><b>-</b></button>
+                <span class="skillScoreNumber" id="knowledgeSkill"></span>
+                <button type="button" class="skillScoreButton" id="increaseKnowledgeButton" onclick="increaseSkillScore(Knowledge)">+</button>
+            </p>
+        </div> 
+        <div class="skillScore">
+            <p>Insight</p>
+            <p>
+                <button type="button" class="skillScoreButton" id="reduceInsightButton" onclick="reduceSkillScore(Insight)"><b>-</b></button>
+                <span class="skillScoreNumber" id="insightSkill"></span>
+                <button type="button" class="skillScoreButton" id="increaseInsightButton" onclick="increaseSkillScore(Insight)">+</button>   
+            </p>
+        </div>    
+        </div>
+        <div class="charGoldandBulkDisplay"> <!--DISPLAYS CHARACTER GOLD-->
+            <div class="charGoldDisplay">
+                <p>Player Gold</p>
+                 <span id="currentGold"></span>
+            </div>
+            <div class="charBulkDisplay">
+                <p>Your Bulk Score <span id="dynamicCharBulkValue"></span> / <span id="totalCharBulkValue"></span></p>
+            </div>
+        </div>
+    <div>
+        <div class="charMainStatBox">
+            <div>
+                <div class="charHealthDisplay">
+                    <p>You have <b><span id="dynamicCharhealth"></span> / <span id="totalCharhealth"></span></b> health points remaining.</p>
+                    <div> <!--DISPLAYS DEFENSEIVE VALUES UNDERNEATH HEALTH SCORE-->
+                        <div class="defValues">
+                            <P>Defense Score: <span id="charDefense"></span></P>
+                        </div>
+                        <div class="defValues">
+                            <p>Resistance Score: <span id="charResistanceScore"></span></p>
+                        </div>
+                        <div class="defValues">
+                            <p>Armor Score: <span id="charArmorScore"></span></p>
+                            <br>
+                        </div>
+                    </div>
+                    <p>Your Attacks Deal <span id="charAttackDamage"></span>D3 + <span id="charDamageBonus"></span> Physical + <span id="charDamageBonusMagical"></span> Magical Damage</p>
+                    <div class="attackDisplay">
+                        <p>Attack Score: <span id="charAttackBonus"></span></p>
+                    </div>
+                    <div class="attackDisplay">
+                        <p>Your Attacks Resolve in <span id="charAttackResolveTime"></span> Rounds</p>
+                    </div>
+                </div>
+                <div class="charMovementDisplay">
+                    <p>Your Mana is <span id="dynamicCharMana"></span> / <span id="totalCharMana"></span></p>
+                    <br>
+                    <p>Your Movement is <span id="charMovement"></span></p>
+                    <br>
+                    <p>Your Light Score is <span id="charLight"></span></p>
+                </div>
+            </div>
+            <div class="charInventoryDisplay">
+                <ul class="inventory"></ul>
+            </div>
+            </div>
+        </div>
+    </div>
+    <p>Your equipped weapon is <span id = "charEquippedWeapon"></span></p>
+    <p>Your equipped armor is <span id = "charEquippedArmor"></span></p>
+    <p>Your equipped off hand item is <span id = "charEquippedOffHandItem"></span></p>
 <div id="selectStats">    
-    <div>
-    <button type="button" id="reduceAthleticsButton" onclick="reduceAthletics()"><b>Reduce Athletics</b></button>
-        <button type="button" id="skillIncreaseAthletics" onclick="increaseAthletics()">
-        <b>Increase Athletics</b>
-    </button>
-    <p>Your Athletics Score is <span id="increaseAthletics"></span></p>
-    </div>
-
-    <div>
-    <button type="button" id="reduceAgilityButton" onclick="reduceAgility()"><b>Reduce Agility</b></button>
-        <button type="button" id="skillIncreaseAgility" onclick="increaseAgility()"><b>Increase Agility</b></button>
-    <p>Your Agility Score is <span id="increaseAgility"></span></p>
-    </div>
-
-    <div>
-    <button type="button" id="reduceThieveryButton" onclick="reduceThievery()"><b>Reduce Thievery</b></button>
-    <button type="button" id="skillIncreaseThievery" onclick="increaseThievery()">
-        <b>Increase Thievery</b>
-    </button>
-    <p>Your Thievery Score is <span id="increaseThievery"></span></p>
-    </div>
-
-    <div>
-        <button type="button" id="reduceKnowledgeButton" onclick="reduceKnowledge()"><b>Reduce Knowledge</b></button>
-        <button type="button" id="skillIncreaseKnowledge" onclick="increaseKnowledge()">
-            <b>Increase Knowledge</b>
-        </button>
-        <p>Your Knowledge Score is <span id="increaseKnowledge"></span></p>
-    </div>
-
-    <div>
-        <button type="button" id="reduceInsightButton" onclick="reduceInsight()"><b>Reduce Insight</b></button>
-        <button type="button" id="skillIncreaseInsight" onclick="increaseInsight()">
-            <b>Increase Insight</b>
-        </button>
-        <p>Your Insight Score is <span id="increaseInsight"></span></p>
-    </div>
-<br>
-<button type="button" onclick="chooseEquipment()"><b>Choose your Equipment</b></button>
+<!-- <button type="button" onclick="chooseEquipment()"><b>Choose your Equipment</b></button> -->
 </div>
 </div>
 
 <div id="charEquip">
     <h2>Choose your Equipment</h2>
-    <P>Main-Hand Items</P>
-    <ul>
-        <li><button type="button" onclick="equipFists()">Fists</button></li>
-        <li><button type="button" onclick="equipArmingSword()">Arming Sword</button></li>
-        <li><button type="button">Mace</button></li>
-        <!-- <li><button type="button">Battleaxe</button></li>
-        <li><button type="button">Staff</button></li>
-        <li><button type="button">Spear</button></li> -->
-    </ul>
-    <p>Off-Hand Items</p>
-    <ul>
-        <li><button type="button">Wand</button></li>
-        <li><button type="button">Shield</button></li>
-        <!-- <li><button type="button">Torch</button></li>
-        <li><button type="button">Talisman</button></li>
-        <li><button type="button">Focus Orb</button></li> -->
-    </ul>
-    <p>Armor</p>
-    <ul>
-        <li><button type="button" onclick="equipNoneArmor()">No Armor</button></li>
-        <li><button type="button" onclick="equipRobes()">Robes</button></li>
-        <li><button type="button" onclick="equipLargeCoat()">Large Coat</button></li>
-        <li><button type="button" onclick="buyFittedVest()">Fitted Vest</button></li> 
-        <li><button type="button" onclick="equipHauberk()">Hauberk</button></li>
-    </ul>
-    <p>Utility Items</p>
-    <ul>
-        <li><button type="button">Lantern</button></li>
-        <!-- <li><button type="button">Backpack</button></li>
-        <li><button type="button">Digging Tools</button></li>
-        <li><button type="button">Crowbar</button></li> -->
-
-    </ul>
-    <!-- <p>Consumables</p>
-    <ul>
-        <li><button type="button">Healing Potion</button></li>
-        <li><button type="button">Throwing Axe</button></li>
-    </ul>
-    <p>Spells</p> -->
-    <ul>
-        <li><button type="button">Magic Missile</button></li>
-        <!-- <li><button type="button">Heal</button></li>
-        <li><button type="button">Flame Whip</button></li>
-        <li><button type="button">Bless</button></li> -->
-
-    </ul>
+    <div class="floatShop">
+        <P>Main-Hand Items</P>
+        <ul class="floatShop">
+            <!-- <li><button type="button" onclick="buyItem(fists)">Fists</button></li> -->
+            <li><button type="button" onclick="buyItem(armingSword)">Arming Sword</button></li>
+            <li><button type="button" onclick="buyItem(mace)">Mace</button></li>
+            <li><button type="button" onclick="buyItem(choppingAxe)">Chopping Axe</button></li>
+            <li><button type="button" onclick="buyItem(staff)">Staff</button></li>
+        </ul>
+    </div>
+    <div class="floatShop">
+        <p>Off-Hand Items</p>
+        <ul class="floatShop">
+            <li><button type="button" onclick="buyItem(wand)">Wand</button></li>
+            <li><button type="button" onclick="buyItem(shield)">Shield</button></li>
+            <li><button type="button" onclick="buyItem(torch)">Torch</button></li>
+            <li><button type="button" onclick="buyItem(talisman)">Talisman</button></li>
+            <li><button type="button" onclick="buyItem(focusOrb)">Focus Orb</button></li>
+        </ul>
+    </div>
+    <div class="floatShop">
+        <p>Armor</p>
+        <ul class="floatShop">
+            <!-- <li><button type="button" onclick="buyItem(garments)">Garments</button></li> -->
+            <li><button type="button" onclick="buyItem(robes)">Robes</button></li>
+            <li><button type="button" onclick="buyItem(largeCoat)">Large Coat</button></li>
+            <li><button type="button" onclick="buyItem(fittedVest)">Fitted Vest</button></li> 
+            <li><button type="button" onclick="buyItem(hauberk)">Hauberk</button></li>
+        </ul>
+    </div>
+    <div class="floatShop">
+        <p>Equipment</p>
+        <ul class="floatShop">
+            <li><button type="button">Lantern</button></li>
+            <!-- <li><button type="button">Backpack</button></li>
+            <li><button type="button">Digging Tools</button></li>
+            <li><button type="button">Crowbar</button></li> -->
+        </ul>
+    </div>
+    <div  class="floatShop">
+        <p>Spells</p>
+        <ul>
+            <li><button type="button">Magic Missile</button></li>
+            <!-- <li><button type="button">Heal</button></li>
+            <li><button type="button">Flame Whip</button></li>
+            <li><button type="button">Bless</button></li> -->
+        </ul>
+    </div>
+    <div class="floatShop">
+        <p>Abilities</p>
+        <ul>
+            <li><button type="button">Mighty Blow</button></li>
+        </ul>
+    </div>
 
 </div>
 
@@ -138,7 +185,10 @@
     <p>this spell deals <span id="charMagicalAttackDamageValue"></span> damage.</p>
     <p>this spell has <span id="charMagicalDamageDie"></span> damage dice.</p>
     
-
+<h3> EQUIPPED ITEMS </h3>
+<p>Your equipped weapon is <span id = "charEquippedWeapon"></span></p>
+<p>Your equipped armor is <span id = "charEquippedArmor"></span></p>
+<p>Your equipped off hand item is <span id = "charEquippedOffHandItem"></span></p>
 </body>
 
 </html>
