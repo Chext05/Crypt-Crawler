@@ -5,16 +5,114 @@ body {
 
 #charStats {
     display: block;
+    width: 75%;
+    text-align: center;
+    margin-left: auto; margin-right: auto;
+    height: 500px;
+    border: 2px solid red;
+}
+/* ------------------------------------------------ */
+/* USED TO ORGANIZE SKILL SCORES IN CHARACTER STATS */
+.charSkillScoreDisplay {
+    width: 65%;
+    height: 50px;
     float: left;
-    width: 25%;
+    /* border: 2px solid red; */
 }
 
+.skillScoreButton {
+    font-size: large;
+    width: 25px;
+}
 
+.skillScore {
+    float: left;
+    width: 20%;
+    font-size: large;
+}
+
+.skillScoreNumber {
+    padding: 10px;
+    font-size: x-large;
+}
+/* ------------------------------------------------ */
+/* USED TO ORGANIZE CHARACTER GOLD DISPLAY */
+.charGoldandBulkDisplay {
+    width: 35%;
+    float: left;
+    height: 100px;
+    font-size: large;
+}
+
+.charGoldDisplay {
+    width: 45%;
+    float: left;
+}
+
+.charBulkDisplay {
+    width: 55%;
+    float: left;
+}
+
+.charValues {
+    float: left;
+    margin-left: 10px; margin-right: 10px;
+}
+
+.charMainStatBox {
+    height: 100px;
+
+
+    margin-left: auto; margin-right: auto;
+}
+
+.charHealthDisplay {
+    width: 50%;
+    float: left;
+    font-size: large;
+}
+
+.defValues {
+    float: left;
+    width: 33.33%;
+}
+
+.charMovementDisplay {
+    width: 15%;
+    float: left;
+}
+
+.charInventoryDisplay {
+    width: 35%;
+    float: left;
+    text-align: left;
+}
+
+.charManaandAttackDisplay {
+    width: 65%;
+    float: left;
+}
+
+.charManaDisplay {
+    width: 40%; 
+    float: left;
+}
+
+.charAttackDisplay {
+    width: 60%;
+    float: left;
+}
+
+.attackDisplay {
+    width: 50%;
+    float: left;
+}
 
 #charEquip {
     display: block;
     float: left;
-    width: 25%
+    width: 100%;
+    text-align: center;
 }
 
 #selectStats {
@@ -23,3 +121,8 @@ body {
     width: 25%;
 }
 
+
+.floatShop {
+    float: left;
+    width: 16.66%;
+}
